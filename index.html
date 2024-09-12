@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaques do Mês</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom,  rgb(100, 100, 100), black);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 170vh;
+            position: relative; /* Para garantir que o posicionamento absoluto funcione corretamente */
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 100px rgba(29, 27, 27, 0.5);
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.2);
+        }
+
+        .top-banner {
+            width: 1416px;
+            height: 63px;
+            background-color: rgba(81, 69, 69, 0.1);
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .menu {    
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 160vh;
+            background-color: rgba(42, 40, 40, 0.8);
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu img {
+            width: 75px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: rgba(205, 23, 23, 0.1);
+            border-radius: 6px;
+            transition: background-color 0.7s ease;
+            text-align: center;
+            width: 100%; 
+        }
+
+        .menu a:hover {
+            background-color: rgba(180, 7, 7, 0.2);
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 3em;
+            text-transform: uppercase;
+        }
+
+        .highlight-container {
+            display: flex;
+            justify-content: space-around;
+            width: 55%;
+            margin-top: 0px;
+        }
+
+        .highlight-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 150px;
+            height: 150px;
+        }
+
+        .highlight-box img {
+            width: 100%;
+            max-width: 140px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box .name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .news-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            padding: 0px;
+            margin-bottom: 20px;
+            position: relative; /* Para o overlay */
+        }
+
+        .news-overlay {
+            background-color: rgba(117, 114, 114, 0.5); /* Fundo preto com 50% de transparência */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 150%;
+            max-width: 600px; /* Ajuste conforme necessário */
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .news-content {
+            color: white; /* Para garantir que o texto seja legível sobre o fundo escuro */
+        }
+
+        .news-thumbnail {
+            width: 100px;
+            height: auto;
+            margin-right: 50px; /* Ajuste conforme necessário */
+        }
+
+        .content-container {
+            display: flex;
+            width: 80%;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .calendar-container {
+            width: 700px;
+            height: 565px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 45px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 78.5px);
+            grid-gap: 7px;
+            margin-top: 0px;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-size: 1.2em;
+            grid-column: span 7;
+        }
+
+        .day-names {
+            display: grid;
+            grid-template-columns: repeat(7, 78.5px);
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .day-names div {
+            padding: 5px 0;
+        }
+
+        .day {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            font-size: 0.8em;
+            width: 78.5px;
+            height: 78.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .day:hover {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .day img {
+            width: 50px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 90vw; /* Ajuste a largura da imagem */
+            height: 100vh; /* Ajuste a altura da imagem */
+            object-fit: cover; /* Para garantir que a imagem cubra a área corretamente */
+            opacity: 0.2; /* Ajuste a transparência conforme necessário */
+            z-index: -1; /* Para garantir que a imagem fique atrás dos outros elementos */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu lateral -->
+    <div class="menu">
+        <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
+        <a href="calculadora.html">Calculadora Ilegal</a>
+        <a href="tabela.html">Tabela Ilegal</a>
+    </div>
+
+    <!-- Logo arredondada com efeito ao passar o mouse -->
+    <img class="logo" src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo">
+
+    <h1>🏆DESTAQUES🏆</h1>
+
+    <div class="highlight-container">
+        <div class="highlight-box">
+            <img src="https://media.discordapp.net/attachments/1224367642174034020/1276551871464738868/image.png?ex=66de6053&is=66dd0ed3&hm=b2625d795bb7707b12fa8fa98f49b2b9e48ca7864d4df74b5f8ae0b4dc364f75&=&format=webp&quality=lossless&width=527&height=313" alt="Destaque 1">
+            <div class="name">FACÇÃO QUE MAIS RECRUTOU</div>
+            <div>EM ANDAMENTO</div>
+        </div>
+       
+        </div>
+    </div>
+
+    <div class="content-container">
+        <div class="calendar-container">
+            <h2 id="calendarHeader" class="calendar-header"></h2>
+            <div class="day-names">
+                <div>Dom</div>
+                <div>Seg</div>
+                <div>Ter</div>
+                <div>Qua</div>
+                <div>Qui</div>
+                <div>Sex</div>
+                <div>Sáb</div>
+            </div>
+            <div class="calendar"></div>
+        </div>
+
+        <div class="news-container">
+            <h3>📰 NOTÍCIAS</h3>
+            <div class="news-item">
+                <div class="news-overlay">
+                    <div class="news-content">
+                        <h4>🎉RECRUTAMENTO SEMANAL🎉</h4>
+                        <p>É importante que todas as facções e Org recrutem a maior quantidade player, isso fará que a sua facção cresca e desenvolva.</p>
+                        <a href="" class="news-link"></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Imagem de fundo com transparência -->
+    <img src="https://media.discordapp.net/attachments/1256689929044627518/1283592505056821313/cpx_fund_ilegal.png?ex=66e38e2d&is=66e23cad&hm=c8fc40780d364f9b9e94dca29f2e924216b379c8326f074667b90b84b47eaa6e&=&format=webp&quality=lossless&width=883&height=497" alt="Imagem de Fundo" class="background-image">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function getCurrentDate() {
+                const today = new Date();
+                const month = today.getMonth();
+                const year = today.getFullYear();
+                return { month, year };
+            }
+
+            function createCalendar(month, year) {
+                const calendar = document.querySelector(".calendar");
+                const header = document.getElementById("calendarHeader");
+
+                const months = [
+                    "📆 JANEIRO", "📆 FEVEREIRO", "📆 MARÇO", "📆 ABRIL",
+                    "📆 MAIO", "📆 JUNHO", "📆 JULHO", "📆 AGOSTO",
+                    "📆 OUTUBRO", "📆 NOVEMBRO", "📆 DEZEMBRO"
+                ];
+                header.textContent = `${months[month]} ${year}`;
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                const dayInfo = {
+                    6: { text: "💀 NOITE DE CRIME" },
+                    7: { text: "💀 NOITE DE CRIME" },
+                    8: { text: "💀 NOITE DE CRIME" },
+                    9: { text: "🎉 WIPE CPXRJ" },
+                    10: { text: "🎉 INICIO DA SEASON 7 " }
+                };
+
+                calendar.innerHTML = ''; // Limpa o calendário anterior
+
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDiv = document.createElement("div");
+                    calendar.appendChild(emptyDiv);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayDiv = document.createElement("div");
+                    dayDiv.className = "day";
+                    dayDiv.textContent = day;
+
+                    if (dayInfo[day]) {
+                        const img = document.createElement("img");
+                        img.src = dayInfo[day].image;
+                        dayDiv.appendChild(img);
+
+                        const textDiv = document.createElement("div");
+                        textDiv.innerHTML = dayInfo[day].text;
+                        dayDiv.appendChild(textDiv);
+                    }
+
+                    calendar.appendChild(dayDiv);
+                }
+            }
+
+            const { month, year } = getCurrentDate();
+            createCalendar(month, year);
+        });
+    </script>
+  
+</body>
+</html>

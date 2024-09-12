@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Ilegal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgb(54, 54, 54), black);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 150vh;
+            overflow-y: scroll;
+            position: relative; /* Para garantir que o elemento de fundo fique atrás */
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 90vw; /* Ajuste a largura da imagem */
+            height: 100vh; /* Ajuste a altura da imagem */
+            object-fit: cover; /* Para garantir que a imagem cubra a área corretamente */
+            opacity: 0.2; /* Ajuste a transparência conforme necessário */
+            z-index: -1; /* Para garantir que a imagem fique atrás dos outros elementos */
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.2);
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(205, 23, 23, 0.1);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .menu a:hover {
+            background-color: rgba(180, 7, 7, 0.2);
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .dropdown-menu a {
+            background-color: rgba(205, 23, 23, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(180, 7, 7, 0.2);
+        }
+
+        .content {
+            margin-left: 160px;
+            padding: 20px;
+            width: calc(100% - 160px);
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 3em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        #category-select {
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        .items-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .item-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 200px;
+            height: auto;
+        }
+
+        .item-box .name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .item-box .price {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Imagem de fundo com transparência -->
+    <img src="https://cdn.discordapp.com/attachments/1224441163482923078/1283602933744664606/dois-homens-vestindo-jaquetas-laranjas-estao-em-uma-rua-com-uma-arma-nas-maos_1308172-283886.png?ex=66e397e3&is=66e24663&hm=e271839afbf97191be4f61ebab0c226f87e5204f4c2f620be368eda03901936f&" alt="Imagem de Fundo" class="background-image">
+
+    <div class="menu">
+        <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
+        <a href="paginainicial.html">Página Inicial</a>
+        <a href="calculadora.html">Calculadora ilegal</a>
+    </div>
+    <div class="content">
+        <img class="logo" src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo">
+
+        <h1>TABELA ILEGAL</h1>
+       
+        <div class="filter">
+            <select id="category-select">
+                <option value="">Selecione uma Categoria</option>
+                <option value="armas">Armas</option>
+                <option value="municao">Munição</option>
+                <option value="lavagem">Lavagem</option>
+                <option value="desmanche">Desmanche</option>
+            </select>
+        </div>
+        <div class="items-container" id="items-container">
+            <!-- Os itens serão inseridos aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const items = [
+            // ARMAS
+            { name: "FAL", price: 1000000, discountPrice: 2000000, categoria: "armas" },
+            { name: "G36", price: 900000, discountPrice: 1800000, categoria: "armas" },
+            { name: "HK416", price: 650000, discountPrice: 1300000, categoria: "armas" },
+            { name: "M4A4", price: 600000, discountPrice: 1200000, categoria: "armas" },
+            { name: "navycarbine", price: 550000, discountPrice: 1100000, categoria: "armas" },
+            { name: "MTAR-21", price: 500000, discountPrice: 1000000, categoria: "armas" },
+            { name: "AK47", price: 475000, discountPrice: 950000, categoria: "armas" },
+            { name: "MACHINE PISTOL", price: 470000, discountPrice: 940000, categoria: "armas" },
+            { name: "FIVEN-SEVEN", price: 200000, discountPrice: 400000, categoria: "armas" },
+            
+            // MUNIÇÃO
+            { name: "FAL", price: 4500, discountPrice: 8500, categoria: "municao" },
+            { name: "G36", price: 4000, discountPrice: 8000, categoria: "municao" },
+            { name: "HK416", price: 3500, discountPrice: 7000, categoria: "municao" },
+            { name: "M4A4", price: 2900, discountPrice: 5800, categoria: "municao" },
+            { name: "navycarbine", price: 2800, discountPrice: 5600, categoria: "municao" },
+            { name: "MTAR-21", price: 2500, discountPrice: 5000, categoria: "municao" },
+            { name: "AK47", price: 1900, discountPrice: 3800, categoria: "municao" },
+            { name: "MACHINE PISTOL", price: 1600, discountPrice: 3200, categoria: "municao" },
+            { name: "FIVEN-SEVEN", price: 1200, discountPrice: 2400, categoria: "municao" },
+            
+            // LAVAGEM
+            { name: "Lavagem Valor em <br>➡️%⬅️", price: 30, discountPrice: 50, categoria: "lavagem" },
+            { name: "capuz", price: 30000, discountPrice: 60000, categoria: "lavagem" },
+            { name: "algemas", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            { name: "chave de algema", price: 10000, discountPrice: 20000, categoria: "lavagem" },
+            { name: "kit sequestro", price: 100000, discountPrice: 100000, categoria: "lavagem" },
+            { name: "masterpick", price: 45000, discountPrice: 900000, categoria: "lavagem" },
+            { name: "blacklist", price: 300000, discountPrice: 600000, categoria: "lavagem" },
+            { name: "mochilax", price: 100000, discountPrice: 200000, categoria: "lavagem" },
+            { name: "maconha", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            { name: "cocaina", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            { name: "lsd", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            
+            // DESMANCHE
+            { name: "lockpick", price: 35000, discountPrice: 70000, categoria: "desmanche" },
+            { name: "colete", price: 70000, discountPrice: 140000, categoria: "desmanche" },
+            { name: "placa", price: 35000, discountPrice: 70000, categoria: "desmanche" },
+            { name: "c4", price: 35000, discountPrice: 75000, categoria: "desmanche" },
+            { name: "nitro", price: 10000, discountPrice: 30000, categoria: "desmanche" },
+            { name: "masterpick", price: 35000, discountPrice: 75000, categoria: "desmanche" },
+            { name: "desmanche", price: 40000, discountPrice: 60000, categoria: "desmanche" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const categorySelect = document.getElementById('category-select');
+            const itemsContainer = document.getElementById('items-container');
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            function displayItems(category) {
+                itemsContainer.innerHTML = '';
+                const filteredItems = items.filter(item => item.categoria === category);
+                filteredItems.forEach(item => {
+                    const itemBox = document.createElement('div');
+                    itemBox.className = 'item-box';
+                    itemBox.innerHTML = `
+                        <div class="name">${item.name}</div>
+                        <div class="price">MIN= R$ ${item.price.toLocaleString()} | MAX= R$ ${item.discountPrice.toLocaleString()}</div>
+                    `;
+                    itemsContainer.appendChild(itemBox);
+                });
+            }
+
+            categorySelect.addEventListener('change', (e) => {
+                const category = e.target.value;
+                displayItems(category);
+            });
+
+            dropdownToggle.addEventListener('click', () => {
+                dropdownMenu.style.display = dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '' ? 'flex' : 'none';
+            });
+
+            document.querySelectorAll('.dropdown-menu a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = e.target.getAttribute('data-category');
+                    categorySelect.value = category;
+                    displayItems(category);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

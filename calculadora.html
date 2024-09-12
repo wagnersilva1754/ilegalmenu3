@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Ilegal - Calculadora</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgb(91, 90, 90), black);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 150vh;
+            overflow-y: scroll;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 90vw; /* Ajuste a largura da imagem */
+            height: 100vh; /* Ajuste a altura da imagem */
+            object-fit: cover; /* Para garantir que a imagem cubra a área corretamente */
+            opacity: 0.2; /* Ajuste a transparência conforme necessário */
+            z-index: -1; /* Para garantir que a imagem fique atrás dos outros elementos */
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.2);
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(205, 23, 23, 0.1);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .menu a:hover {
+            background-color: rgba(180, 7, 7, 0.2);
+        }
+
+        .content {
+            margin-left: 160px;
+            padding: 20px;
+            width: calc(100% - 160px);
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 3em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        #category-select {
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .items-container-wrapper {
+            flex: 2;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .items-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .item-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 200px;
+            height: auto;
+        }
+
+        .item-box .name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .item-box .price {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .item-box input {
+            width: 80%;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+        }
+
+        .item-box button {
+            padding: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .item-box button:hover {
+            background-color: #c0392b;
+        }
+
+        .total {
+            margin-top: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .summary-box {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            height: auto;
+            text-align: left;
+        }
+
+        .summary-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .values-box {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .values-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .total-price {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .clear-btn, .remove-last-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .clear-btn:hover, .remove-last-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
+        <a href="paginainicial.html">Página Inicial</a>
+        <a href="tabela.html">Tabela ilegal</a>
+    </div>
+    <div class="content">
+        <img class="logo" src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo">
+        <img src="https://media.discordapp.net/attachments/1224441163482923078/1283611172389650503/como-ganhar-dinheiro-em-gta-5-006b.png?ex=66e39f8f&is=66e24e0f&hm=7a82712f78ce55d369d858a96da94cafe6c543d346fbe90ca3213a9a9cab14dd&=&format=webp&quality=lossless&width=1180&height=662" alt="Imagem de Fundo" class="background-image">
+        <h1>CALCULADORA ILEGAL</h1>
+        <div class="filter">
+            <select id="category-select">
+                <option value="">Selecione uma Categoria</option>
+                <option value="armas">Armas</option>
+                <option value="municao">Munição</option>
+                <option value="lavagem">Lavagem</option>
+                <option value="desmanche">Desmanche</option>
+            </select>
+        </div>
+
+        <div class="main-container">
+            <div class="items-container-wrapper">
+                <div class="items-container" id="items-container">
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h2>Resumo dos Itens</h2>
+                <ul class="summary-list" id="summary-list">
+                </ul>
+            </div>
+
+            <div class="values-box">
+                <h2>Valor Total</h2>
+                <div class="total-price" id="total-price">R$00</div>
+                <button class="clear-btn" id="clear-btn">Limpar Itens</button>
+                <button class="remove-last-btn" id="remove-last-btn">Retirar Último Item</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const items = [
+    // ARMAS - Novos itens adicionados
+    { name: "FAL", price: 1000000, discountPrice: 2000000, categoria: "armas" },
+    { name: "G36", price: 900000, discountPrice: 1800000, categoria: "armas" },
+    { name: "HK416", price: 650000, discountPrice: 1300000, categoria: "armas" },
+    { name: "M4A4", price: 600000, discountPrice: 1200000, categoria: "armas" },
+    { name: "navycarbine", price: 550000, discountPrice: 1100000, categoria: "armas" },
+    { name: "MTAR-21", price: 500000, discountPrice: 1000000, categoria: "armas" },
+    { name: "AK47", price: 475000, discountPrice: 950000, categoria: "armas" },
+    { name: "MACHINE PISTOL", price: 470000, discountPrice: 940000, categoria: "armas" },
+    { name: "FIVE SEVEN", price: 200000, discountPrice: 400000, categoria: "armas" },
+
+    // MUNIÇÃO - Novos itens adicionados
+    { name: "FAL", price: 4500, discountPrice: 8500, categoria: "municao" },
+    { name: "G36", price: 4000, discountPrice: 8000, categoria: "municao" },
+    { name: "HK416", price: 3500, discountPrice: 7000, categoria: "municao" },
+    { name: "M4A4", price: 2900, discountPrice: 5800, categoria: "municao" },
+    { name: "navycarbine", price: 2800, discountPrice: 5600, categoria: "municao" },
+    { name: "MTAR-21", price: 2500, discountPrice: 5000, categoria: "municao" },
+    { name: "AK47", price: 1900, discountPrice: 3800, categoria: "municao" },
+    { name: "MACHINE PISTOL", price: 1600, discountPrice: 3200, categoria: "municao" },
+    { name: "FIVE SEVEN", price: 1200, discountPrice: 2400, categoria: "municao" },
+
+    // LAVAGEM - Novos itens adicionados
+  
+    { name: "capuz", price: 30000, discountPrice: 60000, categoria: "lavagem" },
+    { name: "algemas", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+    { name: "chave de algema", price: 10000, discountPrice: 20000, categoria: "lavagem" },
+    { name: "kitsequestro", price: 100000, discountPrice: 100000, categoria: "lavagem" },
+    { name: "masterpick", price: 45000, discountPrice: 900000, categoria: "lavagem" },
+    { name: "blacklist", price: 300000, discountPrice: 600000, categoria: "lavagem" },
+    { name: "mochilax", price: 100000, discountPrice: 200000, categoria: "lavagem" },
+    { name: "maconha", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+    { name: "cocaina", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+    { name: "lsd", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+
+    // DESMANCHE - Novos itens adicionados
+    { name: "lockpick", price: 35000, discountPrice: 70000, categoria: "desmanche" },
+    { name: "colete", price: 70000, discountPrice: 140000, categoria: "desmanche" },
+    { name: "placa", price: 35000, discountPrice: 70000, categoria: "desmanche" },
+    { name: "c4", price: 35000, discountPrice: 75000, categoria: "desmanche" },
+    { name: "nitro", price: 10000, discountPrice: 30000, categoria: "desmanche" },
+    { name: "masterpick", price: 45000, discountPrice: 900000, categoria: "desmanche" },
+    { name: "desmanche", price: 40000, discountPrice: 60000, categoria: "desmanche" }
+];
+
+let totalPrice = 0;
+let summaryItems = [];
+const summaryList = document.getElementById('summary-list');
+const totalPriceDisplay = document.getElementById('total-price');
+const discountsDisplay = document.getElementById('discounts');
+const clearBtn = document.getElementById('clear-btn');
+const removeLastBtn = document.getElementById('remove-last-btn');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const categorySelect = document.getElementById('category-select');
+    const itemsContainer = document.getElementById('items-container');
+
+    function displayItems(category) {
+        itemsContainer.innerHTML = '';
+        const filteredItems = items.filter(item => item.categoria === category);
+        filteredItems.forEach(item => {
+            const itemBox = document.createElement('div');
+            itemBox.className = 'item-box';
+            itemBox.innerHTML = `
+                <div class="name">${item.name}</div>
+                <div class="price"> Min= R$ ${item.price.toLocaleString('pt-BR')} | Max= R$ ${item.discountPrice.toLocaleString('pt-BR')}</div>
+                <input type="number" placeholder="Preço de venda" class="sell-price">
+                <input type="number" placeholder="Quantidade" class="quantity">
+                <button class="calculate-btn">Calcular</button>
+                <div class="total">Total: R$ 0,00</div>
+            `;
+            itemsContainer.appendChild(itemBox);
+
+            const sellPriceInput = itemBox.querySelector('.sell-price');
+            const quantityInput = itemBox.querySelector('.quantity');
+            const calculateBtn = itemBox.querySelector('.calculate-btn');
+            const totalDisplay = itemBox.querySelector('.total');
+
+            calculateBtn.addEventListener('click', () => {
+                const sellPrice = parseFloat(sellPriceInput.value) || item.price;
+                const quantity = parseInt(quantityInput.value) || 1;
+                const total = sellPrice * quantity;
+
+                totalDisplay.textContent = `Total: R$ ${total.toLocaleString('pt-BR')}`;
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<span>${item.name} x${quantity}</span><span>R$ ${total.toLocaleString('pt-BR')}</span>`;
+                summaryList.appendChild(listItem);
+
+                summaryItems.push({ name: item.name, total });
+                totalPrice += total;
+                updateTotal();
+            });
+        });
+    }
+
+    function updateTotal() {
+        totalPriceDisplay.textContent = `R$ ${totalPrice.toLocaleString('pt-BR')}`;
+    }
+
+    categorySelect.addEventListener('change', (e) => {
+        const category = e.target.value;
+        displayItems(category);
+    });
+
+    clearBtn.addEventListener('click', () => {
+        summaryList.innerHTML = '';
+        summaryItems = [];
+        totalPrice = 0;
+        document.querySelectorAll('.sell-price, .quantity').forEach(input => {
+            input.value = '';
+        });
+        updateTotal();
+    });
+
+    removeLastBtn.addEventListener('click', () => {
+        if (summaryItems.length > 0) {
+            const lastItem = summaryItems.pop();
+            totalPrice -= lastItem.total;
+            updateTotal();
+
+            // Remove the last item from the summary list
+            const listItems = summaryList.getElementsByTagName('li');
+            summaryList.removeChild(listItems[listItems.length - 1]);
+        }
+    });
+
+    // Exibir a notificação a cada 1 minuto
+    setInterval(() => {
+        alert('Cuidado! Vendas abaixo do permitido resultam em contas wipadas. Att: Kakashi');
+    }, 60000);
+});
+    </script>
+</body>
+</html>
