@@ -9,14 +9,14 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom,  rgb(100, 100, 100), black);
+            background: linear-gradient(to bottom, rgb(40, 39, 39), black);
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             height: 170vh;
-            position: relative; /* Para garantir que o posicionamento absoluto funcione corretamente */
+            position: relative;
         }
 
         .logo {
@@ -94,7 +94,7 @@
         }
 
         .highlight-box {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(8, 8, 8, 0.1);
             padding: 10px;
             border-radius: 20px;
             text-align: center;
@@ -130,19 +130,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
             padding: 0px;
             margin-bottom: 20px;
-            position: relative; /* Para o overlay */
+            position: relative;
         }
 
         .news-overlay {
-            background-color: rgba(117, 114, 114, 0.5); /* Fundo preto com 50% de transparência */
+            background-color: rgba(107, 105, 105, 0.5);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             width: 150%;
-            max-width: 600px; /* Ajuste conforme necessário */
+            max-width: 600px;
             position: absolute;
             top: 0;
             left: 0;
@@ -153,13 +153,13 @@
         }
 
         .news-content {
-            color: white; /* Para garantir que o texto seja legível sobre o fundo escuro */
+            color: white;
         }
 
         .news-thumbnail {
             width: 100px;
             height: auto;
-            margin-right: 50px; /* Ajuste conforme necessário */
+            margin-right: 50px;
         }
 
         .content-container {
@@ -172,7 +172,7 @@
         .calendar-container {
             width: 700px;
             height: 565px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(112, 110, 110, 0.1);
             padding: 45px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -241,11 +241,40 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 90vw; /* Ajuste a largura da imagem */
-            height: 100vh; /* Ajuste a altura da imagem */
-            object-fit: cover; /* Para garantir que a imagem cubra a área corretamente */
-            opacity: 0.2; /* Ajuste a transparência conforme necessário */
-            z-index: -1; /* Para garantir que a imagem fique atrás dos outros elementos */
+            width: 90vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* Estilo do QR Code */
+        .qr-code-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+        }
+
+        .qr-code-container img {
+            width: 100px;
+            height: auto;
+            animation: shakeQR 9s infinite;
+        }
+
+        .qr-code-container p {
+            margin: 0;
+            color: white;
+            font-size: 14px;
+            text-shadow: 0px 0px 3px black;
+        }
+
+        @keyframes shakeQR {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
@@ -265,11 +294,10 @@
 
     <div class="highlight-container">
         <div class="highlight-box">
-            <img src="https://media.discordapp.net/attachments/1224367642174034020/1276551871464738868/image.png?ex=66de6053&is=66dd0ed3&hm=b2625d795bb7707b12fa8fa98f49b2b9e48ca7864d4df74b5f8ae0b4dc364f75&=&format=webp&quality=lossless&width=527&height=313" alt="Destaque 1">
+            <img src="https://media.discordapp.net/attachments/1224367642174034020/1276551871464738868/image.png?ex=66de6053&is=66dd0ed3&hm=b2625d795bb7707b12fa8fa98f49b2b9e48ca7864d4df
+            74b5f8ae0b4dc364f75&=&format=webp&quality=lossless&width=527&height=313" alt="Destaque 1">
             <div class="name">FACÇÃO QUE MAIS RECRUTOU</div>
             <div>EM ANDAMENTO</div>
-        </div>
-       
         </div>
     </div>
 
@@ -294,9 +322,8 @@
                 <div class="news-overlay">
                     <div class="news-content">
                         <h4>🎉RECRUTAMENTO SEMANAL🎉</h4>
-                        <p>É importante que todas as facções e Org recrutem a maior quantidade player, isso fará que a sua facção cresca e desenvolva.</p>
+                        <p>É essencial que todas as facções e organizações recrutem o máximo de jogadores possível, pois isso permitirá que sua facção cresça e se desenvolva.</p>
                         <a href="" class="news-link"></a>
-                       
                     </div>
                 </div>
             </div>
@@ -305,6 +332,12 @@
 
     <!-- Imagem de fundo com transparência -->
     <img src="https://media.discordapp.net/attachments/1256689929044627518/1283592505056821313/cpx_fund_ilegal.png?ex=66e38e2d&is=66e23cad&hm=c8fc40780d364f9b9e94dca29f2e924216b379c8326f074667b90b84b47eaa6e&=&format=webp&quality=lossless&width=883&height=497" alt="Imagem de Fundo" class="background-image">
+
+    <!-- QR Code fixo -->
+    <div class="qr-code-container">
+        <img src="https://ibb.co/82HBBw9" alt="QR Code">
+        <p>Suporte</p>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -321,7 +354,7 @@
 
                 const months = [
                     "📆 JANEIRO", "📆 FEVEREIRO", "📆 MARÇO", "📆 ABRIL",
-                    "📆 MAIO", "📆 JUNHO", "📆 JULHO", "📆 AGOSTO",
+                    "📆 MAIO", "📆 JUNHO", "📆 JULHO", "📆 AGOSTO", "📆 SETEMBRO",
                     "📆 OUTUBRO", "📆 NOVEMBRO", "📆 DEZEMBRO"
                 ];
                 header.textContent = `${months[month]} ${year}`;
@@ -334,7 +367,7 @@
                     7: { text: "💀 NOITE DE CRIME" },
                     8: { text: "💀 NOITE DE CRIME" },
                     9: { text: "🎉 WIPE CPXRJ" },
-                    10: { text: "🎉 INICIO DA SEASON 7 " }
+                    10: { text: "🎉 INICIO DA SEASON 7" }
                 };
 
                 calendar.innerHTML = ''; // Limpa o calendário anterior
@@ -350,10 +383,6 @@
                     dayDiv.textContent = day;
 
                     if (dayInfo[day]) {
-                        const img = document.createElement("img");
-                        img.src = dayInfo[day].image;
-                        dayDiv.appendChild(img);
-
                         const textDiv = document.createElement("div");
                         textDiv.innerHTML = dayInfo[day].text;
                         dayDiv.appendChild(textDiv);
@@ -367,6 +396,6 @@
             createCalendar(month, year);
         });
     </script>
-  
+
 </body>
 </html>
