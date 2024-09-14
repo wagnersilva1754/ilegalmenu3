@@ -275,50 +275,52 @@
 
     <script>
         const items = [
-    // ARMAS - Novos itens adicionados
-    { name: "FAL", price: 1000000, discountPrice: 2000000, categoria: "armas" },
-    { name: "G36", price: 900000, discountPrice: 1800000, categoria: "armas" },
-    { name: "HK416", price: 650000, discountPrice: 1300000, categoria: "armas" },
-    { name: "M4A4", price: 600000, discountPrice: 1200000, categoria: "armas" },
-    { name: "navycarbine", price: 550000, discountPrice: 1100000, categoria: "armas" },
-    { name: "MTAR-21", price: 500000, discountPrice: 1000000, categoria: "armas" },
-    { name: "AK47", price: 475000, discountPrice: 950000, categoria: "armas" },
-    { name: "MACHINE PISTOL", price: 470000, discountPrice: 940000, categoria: "armas" },
-    { name: "FIVE SEVEN", price: 200000, discountPrice: 400000, categoria: "armas" },
+            // ARMAS
+            { name: "FAL", price: 1000000, discountPrice: 2000000, categoria: "armas" },
+            { name: "G36", price: 900000, discountPrice: 1800000, categoria: "armas" },
+            { name: "HK416", price: 650000, discountPrice: 1300000, categoria: "armas" },
+            { name: "M4A4", price: 600000, discountPrice: 1200000, categoria: "armas" },
+            { name: "navycarbine", price: 550000, discountPrice: 1100000, categoria: "armas" },
+            { name: "MTAR-21", price: 500000, discountPrice: 1000000, categoria: "armas" },
+            { name: "AK47", price: 475000, discountPrice: 950000, categoria: "armas" },
+            { name: "MACHINE PISTOL", price: 470000, discountPrice: 940000, categoria: "armas" },
+            { name: "FIVEN-SEVEN", price: 200000, discountPrice: 400000, categoria: "armas" },
+            
+            // MUNIÇÃO
+            { name: "FAL", price: 4500, discountPrice: 8500, categoria: "municao" },
+            { name: "G36", price: 4000, discountPrice: 8000, categoria: "municao" },
+            { name: "HK416", price: 3500, discountPrice: 7000, categoria: "municao" },
+            { name: "M4A4", price: 2900, discountPrice: 5800, categoria: "municao" },
+            { name: "navycarbine", price: 2800, discountPrice: 5600, categoria: "municao" },
+            { name: "MTAR-21", price: 2500, discountPrice: 5000, categoria: "municao" },
+            { name: "AK47", price: 1900, discountPrice: 3800, categoria: "municao" },
+            { name: "MACHINE PISTOL", price: 1600, discountPrice: 3200, categoria: "municao" },
+            { name: "FIVEN-SEVEN", price: 1200, discountPrice: 2400, categoria: "municao" },
+            
+            // LAVAGEM
+            { name: "Lavagem Valor em <br>➡️%⬅️", price: 30, discountPrice: 50, categoria: "lavagem" },
+            { name: "capuz", price: 30000, discountPrice: 60000, categoria: "lavagem" },
+            { name: "algemas", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            { name: "chave de algema", price: 10000, discountPrice: 20000, categoria: "lavagem" },
+            { name: "kit sequestro", price: 100000, discountPrice: 100000, categoria: "lavagem" },
+            { name: "masterpick", price: 45000, discountPrice: 900000, categoria: "lavagem" },
+            { name: "blacklist", price: 300000, discountPrice: 600000, categoria: "lavagem" },
+            { name: "mochilax", price: 100000, discountPrice: 200000, categoria: "lavagem" },
+            { name: "maconha", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            { name: "cocaina", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            { name: "lsd", price: 5000, discountPrice: 10000, categoria: "lavagem" },
+            
+            // DESMANCHE
+            { name: "lockpick", price: 35000, discountPrice: 70000, categoria: "desmanche" },
+            { name: "colete", price: 70000, discountPrice: 140000, categoria: "desmanche" },
+            { name: "placa", price: 35000, discountPrice: 70000, categoria: "desmanche" },
+            { name: "c4", price: 35000, discountPrice: 75000, categoria: "desmanche" },
+            { name: "nitro", price: 10000, discountPrice: 30000, categoria: "desmanche" },
+            { name: "Caminhão 750kg ", price: 5000000, discountPrice: 10000000, categoria: "desmanche" },
+            { name: "Tuning  ilegal ", price: 5000000, discountPrice: 10000000, categoria: "desmanche" },
+            { name: "desmanche", price: 40000, discountPrice: 60000, categoria: "desmanche" }
+        ];
 
-    // MUNIÇÃO - Novos itens adicionados
-    { name: "FAL", price: 4500, discountPrice: 8500, categoria: "municao" },
-    { name: "G36", price: 4000, discountPrice: 8000, categoria: "municao" },
-    { name: "HK416", price: 3500, discountPrice: 7000, categoria: "municao" },
-    { name: "M4A4", price: 2900, discountPrice: 5800, categoria: "municao" },
-    { name: "navycarbine", price: 2800, discountPrice: 5600, categoria: "municao" },
-    { name: "MTAR-21", price: 2500, discountPrice: 5000, categoria: "municao" },
-    { name: "AK47", price: 1900, discountPrice: 3800, categoria: "municao" },
-    { name: "MACHINE PISTOL", price: 1600, discountPrice: 3200, categoria: "municao" },
-    { name: "FIVE SEVEN", price: 1200, discountPrice: 2400, categoria: "municao" },
-
-    // LAVAGEM - Novos itens adicionados
-  
-    { name: "capuz", price: 30000, discountPrice: 60000, categoria: "lavagem" },
-    { name: "algemas", price: 5000, discountPrice: 10000, categoria: "lavagem" },
-    { name: "chave de algema", price: 10000, discountPrice: 20000, categoria: "lavagem" },
-    { name: "kitsequestro", price: 100000, discountPrice: 100000, categoria: "lavagem" },
-    { name: "masterpick", price: 45000, discountPrice: 900000, categoria: "lavagem" },
-    { name: "blacklist", price: 300000, discountPrice: 600000, categoria: "lavagem" },
-    { name: "mochilax", price: 100000, discountPrice: 200000, categoria: "lavagem" },
-    { name: "maconha", price: 5000, discountPrice: 10000, categoria: "lavagem" },
-    { name: "cocaina", price: 5000, discountPrice: 10000, categoria: "lavagem" },
-    { name: "lsd", price: 5000, discountPrice: 10000, categoria: "lavagem" },
-
-    // DESMANCHE - Novos itens adicionados
-    { name: "lockpick", price: 35000, discountPrice: 70000, categoria: "desmanche" },
-    { name: "colete", price: 70000, discountPrice: 140000, categoria: "desmanche" },
-    { name: "placa", price: 35000, discountPrice: 70000, categoria: "desmanche" },
-    { name: "c4", price: 35000, discountPrice: 75000, categoria: "desmanche" },
-    { name: "nitro", price: 10000, discountPrice: 30000, categoria: "desmanche" },
-    { name: "masterpick", price: 45000, discountPrice: 900000, categoria: "desmanche" },
-    { name: "desmanche", price: 40000, discountPrice: 60000, categoria: "desmanche" }
-];
 
 let totalPrice = 0;
 let summaryItems = [];
