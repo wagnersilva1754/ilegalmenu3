@@ -569,17 +569,42 @@
             transition: transform 0.3s ease; /* Adiciona uma transição suave para o efeito de espelho */
         }
         .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
+    animation: bounce 2.5s ease infinite; /* Aplica a animação de salto */
+}
+
+.logo:hover {
+    transform: scale(1.2);
+}
+.logo1 {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 100px rgba(29, 27, 27, 0.5);
             margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
             transition: transform 0.3s ease-in-out;
         }
 
-        .logo:hover {
+        .logo1:hover {
             transform: scale(1.2);
         }
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1); /* Ajuste a altura e o tamanho conforme necessário */
+    }
+}
+
 
         .menu {
             position: fixed;
@@ -730,35 +755,36 @@
     </style>
 </head>
 <body>
-    <!-- Vídeo de fundo -->
-    <div class="background-video">
-        <iframe id="background-video" width="100%" height="100%" 
-        src="https://www.youtube.com/embed/doxS6QCVvEA?autoplay=1&mute=1&controls=0&loop=1&playlist=doxS6QCVvEA" 
-        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+  <!-- Vídeo de fundo -->
+  <div class="background-video">
+    <iframe id="background-video" width="105%" height="110%" 
+    src="https://www.youtube.com/embed/doxS6QCVvEA?autoplay=1&mute=1&controls=0&loop=1&playlist=doxS6QCVvEA" 
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 
-    <!-- Botão para alternar o som -->
-    <button id="sound-toggle" class="sound-button" onclick="toggleSound()">
-        <span>▶️ Reproduzir Áudio</span>
-    </button>
+<!-- Botão para alternar o som -->
+<button id="sound-toggle" class="sound-button" onclick="toggleSound()">
+    <span>▶️ Reproduzir Áudio</span>
+</button>
 
-    <script>
-        let isMuted = true;
+<script>
+    let isMuted = true;
 
-        function toggleSound() {
-            const iframe = document.getElementById('background-video');
-            isMuted = !isMuted;
-            iframe.src = `https://www.youtube.com/embed/doxS6QCVvEA?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&loop=1&playlist=doxS6QCVvEA`;
+    function toggleSound() {
+        const iframe = document.getElementById('background-video');
+        isMuted = !isMuted;
+        iframe.src = `https://www.youtube.com/embed/doxS6QCVvEA?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&loop=1&playlist=doxS6QCVvEA`;
 
-            // Atualizar o texto do botão com base no estado do áudio
-            const buttonText = isMuted ? '▶️ Reproduzir Áudio' : '🔊 Pausar Áudio';
-            document.getElementById('sound-toggle').innerHTML = `<span>${buttonText}</span>`;
-        }
-    </script>
+        // Atualizar o texto do botão com base no estado do áudio
+        const buttonText = isMuted ? '▶️ Reproduzir Áudio' : '🔊 Pausar Áudio';
+        document.getElementById('sound-toggle').innerHTML = `<span>${buttonText}</span>`;
+    }
+</script>
+
     
     <!-- Menu lateral -->
     <div class="menu">
-        <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
+        <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo1 Principal" class="logo1">
         <a href="calculadora.html">Calculadora Ilegal</a>
         <a href="tabela.html">Tabela Ilegal</a>
         <a href="mochila.html">Mochilas facção</a>
