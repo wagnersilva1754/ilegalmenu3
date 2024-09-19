@@ -230,13 +230,29 @@
         .clear-btn:hover, .remove-last-btn:hover {
             background-color: #c0392b;
         }
+
+        .sell-btn, .remove-last-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .clear-btn:hover, .remove-last-btn:hover {
+            background-color: #c0392b;
+        }
     </style>
 </head>
 <body>
     <div class="menu">
         <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
-        <a href="index.html">Página Inicial</a>
+        <a href="paginainicial.html">Página Inicial</a>
         <a href="tabela.html">Tabela ilegal</a>
+        
     </div>
     <div class="content">
         <img class="logo" src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo">
@@ -269,6 +285,8 @@
                 <div class="total-price" id="total-price">R$00</div>
                 <button class="clear-btn" id="clear-btn">Limpar Itens</button>
                 <button class="remove-last-btn" id="remove-last-btn">Retirar Último Item</button>
+                <button class="sell-btn" id="sell-btn" style="background-color: rgb(241, 46, 46); color: rgb(255, 248, 248);">Vender</button>
+            </div>
             </div>
         </div>
     </div>
@@ -320,8 +338,35 @@
             { name: "Tuning  ilegal ", price: 0, discountPrice: 0, categoria: "desmanche" },
             { name: "desmanche", price: 40000, discountPrice: 60000, categoria: "desmanche" }
         ];
+        const sellButton = document.getElementById('sell-btn');
 
+        
+        // Função para coletar o resumo dos itens e enviar via webhook
+        function sendToDiscord(itemsSummary) {
+            const webhookUrl = 'https://discordapp.com/api/webhooks/1286060296775008266/HwGGqJVDWvRrrT2wz-1AYayBdejNNxXTTKvuvpw6wE5jxUtL_1Khl4sglQzJhYyq522K';
+            const message = {
+                content: `**Resumo dos Itens**\n${itemsSummary}`
+            };
 
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(message)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Resumo enviado com sucesso!');
+                } else {
+                    alert('Erro ao enviar o resumo.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Falha na conexão com o Discord.');
+            });
+        }
+
+       
 let totalPrice = 0;
 let summaryItems = [];
 const summaryList = document.getElementById('summary-list');
@@ -403,6 +448,64 @@ document.addEventListener('DOMContentLoaded', () => {
             summaryList.removeChild(listItems[listItems.length - 1]);
         }
     });
+
+// Função para enviar o resumo dos itens via webhook do Discord
+function sendToDiscord(itemsSummary, sellerName, factionName, totalPrice, webhookUrl) {
+    const saleDate = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    const message = {
+        content: `\`\`\`Vendedor: ${sellerName}\nFacção que comprou: ${factionName}\nResumo dos itens:\n${itemsSummary}\nValor total da venda: R$ ${totalPrice.toLocaleString('pt-BR')}\nData da venda: ${saleDate}\`\`\``
+    };
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(message)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Resumo enviado com sucesso!');
+        } else {
+            alert('Erro ao enviar o resumo.');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Falha na conexão com o Discord.');
+    });
+}
+
+sellButton.addEventListener('click', function() {
+    const password = prompt('Insira a senha para vender:');
+    let webhookUrl = '';
+
+    // Define o URL do webhook baseado na senha
+    switch (password) {
+        case '123':
+            webhookUrl = 'https://discordapp.com/api/webhooks/1286060296775008266/HwGGqJVDWvRrrT2wz-1AYayBdejNNxXTTKvuvpw6wE5jxUtL_1Khl4sglQzJhYyq522K';
+            break;
+        case '321':
+            webhookUrl = 'https://discordapp.com/api/webhooks/1286335123293339648/wg9OLBihhFlf76rm0l-VzApN7NBGddrWz5PLSiJNmKBzgwDaVAXcutoeDJ6eW01zx0dL';
+            break;
+        case '789':
+            webhookUrl = 'https://discordapp.com/api/webhooks/1286335948472451133/p8q5d-mY5-YOAX_XF_SaaSmPw1TXQRg2lR91TjPZWzlDC8wilyXMnLv4kETWD03NsSF7';
+            break;
+        case '1011':
+            webhookUrl = 'https://discordapp.com/api/webhooks/1286336122288345149/4WEaN5Ild2GTYqUF31TKd30tSMkKVFCcE8x5rE_HXxFFUknhWT7bqsK5tr0zQT0OFlJa';
+            break;
+        default:
+            alert('Senha incorreta!');
+            return;  // Encerra a execução se a senha for inválida
+    }
+
+    const sellerName = prompt('Insira o nome do vendedor:');
+    const factionName = prompt('Insira o nome da facção que comprou:');
+    
+    const summaryList = document.getElementById('summary-list');
+    const itemsSummary = Array.from(summaryList.children).map(item => item.textContent).join('\n');
+
+    // Envia o resumo usando o webhook correspondente
+    sendToDiscord(itemsSummary, sellerName, factionName, totalPrice, webhookUrl);
+});e
 
     // Exibir a notificação a cada 1 minuto
     setInterval(() => {
