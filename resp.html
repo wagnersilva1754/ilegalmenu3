@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setor ilegal</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom,  #000000, #550404e2);
+            color: rgb(239, 223, 223);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            padding-top: 20px;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 1000%;
+            margin-bottom: 10px;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+            animation: pulse 1s infinite;
+        }
+        .logo:hover {
+            transform: scale(1.2);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .logo1 {
+            position: absolute;
+            top: 12%;
+            left: -15%;
+            width: 700px;
+            height: auto;
+        }
+        .title {
+            font-size: 45px;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgb(255, 254, 254);
+            animation: shake 0.5s ease-in-out 0s 1, flashText 1.5s infinite;
+        }
+        .password-container {
+            margin-top: 20px;
+        }
+        input[type="password"],
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+        .message-box {
+            border: 2px solid green;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .hammer-animation {
+            display: none;
+            font-size: 50px;
+            animation: hammer 1s infinite;
+        }
+        @keyframes hammer {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        /* Animação assustadora ao errar a senha */
+        .error-animation {
+            display: none;
+            font-size: 30px;
+            color: rgb(255, 248, 248);
+            animation: shake 0.5s ease-in-out 0s 1, flashText 1.5s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-5px, 0); }
+            50% { transform: translate(5px, 0); }
+            75% { transform: translate(-5px, 0); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes flashText {
+            0%, 100% { color: rgb(242, 4, 4); }
+            50% { color: rgb(144, 0, 0); }
+        }
+        /* Para simular o envio de informações */
+        .location-alert {
+            display: none;
+            margin-top: 20px;
+            font-size: 25px;
+            color: red;
+            font-weight: bold;
+            animation: locationFlash 1s infinite;
+        }
+        @keyframes locationFlash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.ibb.co/HNCxsBP/image.png" alt="Imagem de Fundo" class="background-image">
+    <img src=" https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
+    
+    <div class="title">🔐 ACESSO RESTRITO 🔐 <br></div>
+    
+    <div class="password-container">
+        <button onclick="showFields()">Gerar Senha</button>
+        <div id="inputFields" style="display: none;">
+            <input type="text" id="name" placeholder="Digite seu nome">
+            <input type="text" id="role" placeholder="Digite sua função">
+        </div>
+        <div id="loginFields" style="display: none;">
+            <input type="password" id="password" placeholder="Digite sua senha">
+            <button onclick="checkPassword()">Entrar</button>
+        </div>
+    </div>
+
+    <div class="message-box" id="messageBox"></div>
+    <div class="hammer-animation" id="hammerAnimation">✅</div>
+
+    <audio id="hammerSound" src="batida.mp3" preload="auto"></audio>
+    
+    <!-- Mensagem de erro assustadora -->
+    <div class="error-animation" id="errorAnimation"> ❌ACESSO NEGADO ❌ 🚨</div>
+    <div class="location-alert" id="locationAlert">📡 ALERTA DE TENTATIVA DE INVASÃO ENVIADO ⏳</div>
+
+    <script>
+        let generatedPassword = "";
+
+        function showFields() {
+            document.getElementById("inputFields").style.display = "block";
+            document.querySelector(".password-container button").onclick = generatePassword;
+        }
+
+        function generatePassword() {
+            const name = document.getElementById("name").value;
+            const role = document.getElementById("role").value;
+
+            if (!name || !role) {
+                alert("Por favor, preencha seu nome e função.");
+                return;
+            }
+
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numbers = "0123456789";
+            const specialChars = " ∼ ∽ ∾ ∿ ≀ ≁ ≂ ≃ ≄ ≅ ≆ ";
+            let password = "";
+
+            for (let i = 0; i < 4; i++) {
+                password += letters.charAt(Math.floor(Math.random() * letters.length));
+            }
+            for (let i = 0; i < 3; i++) {
+                password += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            }
+            for (let i = 0; i < 3; i++) {
+                password += specialChars.charAt(Math.floor(Math.random() * specialChars.length));
+            }
+
+            generatedPassword = password;
+            const now = new Date();
+            const dateTime = now.toLocaleString('pt-BR');
+            const message = `:scales:**NOVA SENHA GERADA** @everyone :scales:\nOlá ${role} **${name}**, tudo bem?\nData e Hora: ${dateTime}\nA sua senha de acesso será \`\`\`${password}\`\`\`\n`;
+
+            sendPasswordToDiscord(message);
+            document.getElementById("hammerAnimation").style.display = "block";
+            document.getElementById("hammerSound").play();
+            document.getElementById("messageBox").innerText = "Senha enviada!";
+            document.getElementById("messageBox").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("hammerAnimation").style.display = "none";
+            }, 2000); // Dura 2 segundos
+            document.getElementById("loginFields").style.display = "block";
+        }
+
+        function sendPasswordToDiscord(message) {
+            const webhookUrl = "https://discordapp.com/api/webhooks/1287085645671436379/gdQcYju8M6gxfGLiT4Bn7hqvQCUChvoUgxvXUCNvpOeDXP4NbxplQJOnkvP3ph0a8fHr";
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ content: message })
+            });
+        }
+
+        function checkPassword() {
+            const inputPassword = document.getElementById("password").value;
+            if (inputPassword === generatedPassword) {
+                alert("Senha correta! seja bem-vindo autoridade!");
+                window.location.href = "inicio.html"; 
+            } else {
+                triggerErrorAnimation();
+            }
+        }
+
+        
+        function triggerErrorAnimation() {
+            // Exibir animação de erro
+            document.getElementById("errorAnimation").style.display = "block";
+            document.getElementById("locationAlert").style.display = "block";
+            
+            // Animação e som de alerta
+            const errorSound = new Audio('alerta.mp3');
+            errorSound.play();
+            
+            // Simula o envio de informações
+            setTimeout(() => {
+                document.getElementById("locationAlert").textContent = "📡 ALERTA DE TENTATIVA DE INVASÃO ENVIADO ";
+            }, 2000);
+            
+            // Após 5 segundos, oculta as animações de erro
+            setTimeout(() => {
+                document.getElementById("errorAnimation").style.display = "none";
+                document.getElementById("locationAlert").style.display = "none";
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>
