@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, rgb(54, 54, 54), black);
+            background: linear-gradient(to bottom, rgb(0, 0, 0), black);
             color: white;
             display: flex;
             flex-direction: column;
@@ -17,18 +17,18 @@
             justify-content: flex-start;
             height: 150vh;
             overflow-y: scroll;
-            position: relative; /* Para garantir que o elemento de fundo fique atrás */
+            position: relative;
         }
 
         .background-image {
             position: fixed;
             top: 0;
             right: 0;
-            width: 90vw; /* Ajuste a largura da imagem */
-            height: 100vh; /* Ajuste a altura da imagem */
-            object-fit: cover; /* Para garantir que a imagem cubra a área corretamente */
-            opacity: 0.2; /* Ajuste a transparência conforme necessário */
-            z-index: -1; /* Para garantir que a imagem fique atrás dos outros elementos */
+            width: 90vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0.2;
+            z-index: -1;
         }
 
         .logo {
@@ -46,32 +46,37 @@
 
         .menu {
             position: fixed;
-            top: 0;
+            top: 150;
             left: 0;
-            width: 150px;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
+            width: 100px;
+            height: 800vh;
+            background-color: rgba(16, 236, 181, 0);
+            padding: 0px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 1000;
+            z-index: 8000;
         }
 
         .menu a {
-            color: white;
-            text-decoration: none;
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: rgba(205, 23, 23, 0.1);
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            text-align: center;
-            width: 100%;
-        }
+    color: rgba(255, 255, 255, 0.836);
+    text-decoration: none;
+    margin-bottom: 20px;
+    padding: 0px;
+    background-color: rgba(204, 2, 2, 0.111);
+    border-radius: 0px;
+    transition: background-color 10s ease, transform 0.5s ease; /* Adiciona transição para a transformação */
+    text-align: center;
+    width: 100%;
+    transform: translateY(223px); /* Move o texto 10px para baixo */
+}
+
+/* Para o efeito ao passar o mouse, por exemplo */
+
+
 
         .menu a:hover {
-            background-color: rgba(180, 7, 7, 0.2);
+            background-color: rgba(180, 7, 7, 0.149);
         }
 
         .dropdown-toggle {
@@ -111,6 +116,12 @@
             text-align: center;
         }
 
+        h2 {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
         .filter {
             margin-bottom: 20px;
         }
@@ -120,23 +131,32 @@
             font-size: 1em;
         }
 
-        .items-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            max-width: 1200px;
-            margin: 0 auto;
+        .item-table {
+            width: 65%; /* Ajuste para definir a largura da tabela */
+            border-collapse: collapse;
+            margin: 15px auto; /* Centraliza a tabela */
+            align-items: center;
+        }
+
+        .item-table th, .item-table td {
+            border: 0.1px solid #c61717;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .item-table th {
+            background-color: #af0000;
         }
 
         .item-box {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 80px;
             text-align: center;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             width: 200px;
             height: auto;
+            margin: 50px;
         }
 
         .item-box .name {
@@ -147,51 +167,81 @@
         .item-box .price {
             font-size: 1.2em;
         }
+        .image-header {
+    width: 110%;
+    height: 190px;
+    background-color: #000000;
+    display: flex;
+    justify-content: right; /* Alinha a imagem à esquerda por padrão */
+    align-items: right;
+    overflow: hidden; /* Impede que a imagem exceda a área da div */
+    transition: transform 8s ease; /* Animação ao mover a imagem */
+}
+
+.image-header img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.move-right {
+    transform: translateX(0%); /* Move a imagem 500% para a direita */
+}
+
     </style>
 </head>
 
 <body>
-    <!-- Imagem de fundo com transparência -->
-    <img src="https://i.ibb.co/yqQqQH6/cpx-fund-ilegal.webp"  alt="Imagem de Fundo" class="background-image">
-
+    
     <div class="menu">
-        <img src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo Principal" class="logo">
+        
         <a href="index.html">Página Inicial</a>
         <a href="calculadora.html">Calculadora ilegal</a>
-        <a href="resp.html">Resp.ilegal</a>
+        
     </div>
-    <div class="content">
-        <img class="logo" src="https://i.ibb.co/TkjdDwN/baixados.png" alt="Logo">
+    <div class="image-header move-right" id="image-header">
+        <img src="https://storage.hydrus.gg/production/static/t1AI5BP0GYhsPeExpB83PGv73HQfXzBDn07JAPeF.png" alt="Imagem">
+    </div>
+    
+    <h1 id="titulo-principal">TABELA ILEGAL</h1>
 
-        <h1>TABELA ILEGAL</h1>
-       <h2> Todos os itens devem ser vendidos com no máximo  10%  caso houver uma parceria! </h2>
-        <div class="filter">
-            <select id="category-select">
-                <option value="">Selecione uma Categoria</option>
-                <option value="armas">Armas</option>
-                <option value="municao">Munição</option>
-                <option value="lavagem">Lavagem</option>
-                <option value="desmanche">Desmanche</option>
-            </select>
-        </div>
-        <div class="items-container" id="items-container">
-            <!-- Os itens serão inseridos aqui pelo JavaScript -->
-        </div>
+    <h2>Todos os itens devem ser vendidos com no máximo 10% caso houver uma parceria!</h2>
+    <div class="filter">
+        <select id="category-select">
+            <option value="">Selecione uma Categoria</option>
+            <option value="armas">Armas</option>
+            <option value="municao">Munição</option>
+            <option value="lavagem">Lavagem</option>
+            <option value="desmanche">Desmanche</option>
+        </select>
     </div>
+    <table class="item-table" id="items-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Valor com Parceria</th>
+                <th>Valor sem Parceria</th>
+                
+            </tr>
+        </thead>
+        <tbody id="items-container">
+            <!-- Os itens serão inseridos aqui pelo JavaScript -->
+        </tbody>
+    </table>
 
     <script>
         const items = [
-            // ARMAS
-            { name: "FAL", price: 0, discountPrice: 2200000, categoria: "armas" },
+           // ARMAS
+           { name: "FAL", price: 0, discountPrice: 2200000, categoria: "armas" },
             { name: "G36", price: 0, discountPrice: 1800000, categoria: "armas" },
             { name: "HK416", price: 0, discountPrice: 1500000, categoria: "armas" },
             { name: "M4A4", price: 0, discountPrice: 1350000, categoria: "armas" },
             { name: "navycarbine", price: 0, discountPrice: 850000, categoria: "armas" },
-            { name: "MTAR-21", price: 0, discountPrice: 500000, categoria: "armas" },
+            { name: "MTAR-21", price: 0, discountPrice: 1000000, categoria: "armas" },
             { name: "AK47", price: 0, discountPrice: 1150000, categoria: "armas" },
             { name: "MACHINE PISTOL", price: 0, discountPrice: 500000, categoria: "armas" },
             { name: "FIVEN-SEVEN", price: 0, discountPrice: 350000, categoria: "armas" },
-            
+    
             // MUNIÇÃO
             { name: "FAL", price: 4500, discountPrice: 6375, categoria: "municao" },
             { name: "G36", price: 4000, discountPrice: 6000, categoria: "municao" },
@@ -202,7 +252,7 @@
             { name: "AK47", price: 1900, discountPrice: 3750, categoria: "municao" },
             { name: "MACHINE PISTOL", price: 1600, discountPrice: 3050, categoria: "municao" },
             { name: "FIVEN-SEVEN", price: 1200, discountPrice: 2100, categoria: "municao" },
-            
+    
             // LAVAGEM
             { name: "Lavagem Valor em <br>➡️%⬅️", price: 30, discountPrice: 50, categoria: "lavagem" },
             { name: "capuz", price: 30000, discountPrice: 60000, categoria: "lavagem" },
@@ -217,55 +267,53 @@
             { name: "lsd", price: 5000, discountPrice: 10000, categoria: "lavagem" },
             { name: "maconha para venda", price: 5000, discountPrice: 9500, categoria: "lavagem" },
             { name: "cocaina para venda", price: 5000, discountPrice: 9700, categoria: "lavagem" },
-            { name: "cocaina", price: 5000, discountPrice: 1200, categoria: "lavagem" },
             { name: "colete", price: 70000, discountPrice: 160000, categoria: "lavagem" },
+    
             // DESMANCHE
             { name: "lockpick", price: 35000, discountPrice: 70000, categoria: "desmanche" },
             { name: "colete", price: 70000, discountPrice: 160000, categoria: "desmanche" },
             { name: "placa", price: 35000, discountPrice: 70000, categoria: "desmanche" },
             { name: "c4", price: 35000, discountPrice: 75000, categoria: "desmanche" },
             { name: "nitro", price: 10000, discountPrice: 30000, categoria: "desmanche" },
-            { name: "Caminhão 750kg ", price: 5000000, discountPrice: 10000000, categoria: "desmanche" },
-            { name: "Tunning ilegal <br> fica a critério de líder de fac ", price: 0, discountPrice: 0, categoria: "desmanche" },
+            { name: "Caminhão 750kg", price: 5000000, discountPrice: 10000000, categoria: "desmanche" },
+            { name: "Tunning ilegal <br> fica a critério de líder de fac", price: 0, discountPrice: 0, categoria: "desmanche" },
             { name: "desmanche", price: 40000, discountPrice: 60000, categoria: "desmanche" }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
             const categorySelect = document.getElementById('category-select');
             const itemsContainer = document.getElementById('items-container');
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
+            const title = document.getElementById('titulo-principal');
 
             function displayItems(category) {
                 itemsContainer.innerHTML = '';
                 const filteredItems = items.filter(item => item.categoria === category);
+
                 filteredItems.forEach(item => {
-                    const itemBox = document.createElement('div');
-                    itemBox.className = 'item-box';
-                    itemBox.innerHTML = `
-                        <div class="name">${item.name}</div>
-                        <div class="price"> Sparceria= R$ ${item.discountPrice.toLocaleString()}</div>
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td>R$ ${item.price.toLocaleString('pt-BR')}</td>
+                        <td>R$ ${item.discountPrice.toLocaleString('pt-BR')}</td>
                     `;
-                    itemsContainer.appendChild(itemBox);
+                    itemsContainer.appendChild(row);
                 });
             }
 
-            categorySelect.addEventListener('change', (e) => {
-                const category = e.target.value;
-                displayItems(category);
-            });
+            function updateTitle(category) {
+                const categoryTitles = {
+                    'armas': 'Tabela de Armas',
+                    'municao': 'Tabela de Munição',
+                    'lavagem': 'Tabela de Lavagem',
+                    'desmanche': 'Tabela de Desmanche',
+                };
+                title.textContent = categoryTitles[category] || 'TABELA ILEGAL';
+            }
 
-            dropdownToggle.addEventListener('click', () => {
-                dropdownMenu.style.display = dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '' ? 'flex' : 'none';
-            });
-
-            document.querySelectorAll('.dropdown-menu a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const category = e.target.getAttribute('data-category');
-                    categorySelect.value = category;
-                    displayItems(category);
-                });
+            categorySelect.addEventListener('change', (event) => {
+                const selectedCategory = event.target.value;
+                displayItems(selectedCategory);
+                updateTitle(selectedCategory);
             });
         });
     </script>
