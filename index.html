@@ -23,12 +23,12 @@
                      
         .image-header img {
             width: 100%;
-            height: 304px;
+            height: 270px;
             object-fit: cover;
         }
         .image-header2 {
-    width: 100%; /* Ajuste o contêiner para ocupar 100% da largura */
-    height: 304px;
+    width: 90%; /* Ajuste o contêiner para ocupar 100% da largura */
+    height: 170px;
     background-color: #000000;
     display: flex;
     justify-content: center; /* Centraliza a imagem horizontalmente */
@@ -47,7 +47,7 @@
             justify-content: space-around;
             width: 100%;
             background-color: #1c1b1b;
-            padding: 10px 0;
+            padding: 5px 0;
         }
 
         .list-item {
@@ -111,7 +111,7 @@
         .faq-container {
             width: 80%;
             margin: 20px auto;
-            background-color: #e3030347;
+            background-color: #24030300;/* fundo D cAIXA DE PERGUNTAS */
             border-radius: 10px;
             padding: 20px;
         }
@@ -127,14 +127,14 @@
         }
 
         .faq-question {
-            background-color: #2b0808;
+            background-color: #d506061f;/* fundo D cAIXA DE LETRAS */
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         .faq-question:hover {
-            background-color: #d66800;
+            background-color: #ff0b03;
         }
 
         .faq-answer {
@@ -172,56 +172,7 @@
            
 
         }
-    .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 78.5px);
-    grid-gap: 7px;
-    margin-top: 0px;
-    align-items: center;
-}
-
-.calendar-header {
-    text-align: center;
-    font-size: 1.2em;
-    grid-column: span 7;
-    align-items: center;
-}
-
-.day-names {
-    display: grid;
-    grid-template-columns: repeat(7, 78.5px);
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 0px;
-    align-items: center;
-}
-
-.day-names div {
-    align-items: center;
-    padding: 5px 0;
-}
-
-.day {
-    background-color: rgba(4, 4, 4, 0);
-    padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    font-size: 0.8em;
-    width: 78.5px;
-    height: 78.5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-    align-items: center;
-}
-
-.day:hover {
-    animation: shake 0.5s;
-    align-items: center;
-}
+   
 .content-container {
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
@@ -243,7 +194,7 @@
 }
 .desta_img {
             width: 100%;
-            height: 304px;
+            height: 170px;
             background-color: #000000;
             display: flex;
             justify-content: center;
@@ -252,7 +203,7 @@
                      
         .desta_img {
             width: 100%;
-            height: 304px;
+            height: 170px;
             object-fit: cover;
         }
     </style>
@@ -267,9 +218,7 @@
 
     <!-- Lista de opções horizontal -->
     <div class="list-container">
-        <div class="list-item" onclick="openCalendar()">
-            📅 Calendário
-        </div>
+       
         <div class="list-item" onclick="window.location.href='calculadora.html'">
             🧮 Calculadora Ilegal
         </div>
@@ -290,37 +239,9 @@
         </div>
     </div>
 
-    <h1 id="titulo">Últimas Notícias do Ilegal</h1>
-    <h4 id="titulo1">A Facção C.D.I lidera o recrutamento na cidade do complexo Rj</h4>
-    <div class="image-header2">
-        <img src="https://i.ibb.co/zmcpG4v/cdi.png" alt="Imagem">
-    </div>
+  
 
-
-    <!-- Modal para o calendário -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
-
-    <div class="content-container">
-        <div id="calendarContainer" class="calendar-container" style="display:none;">
-            <h2 id="calendarHeader" class="calendar-header">Calendário</h2>
-            <div class="day-names">
-                <div>Dom</div>
-                <div>Seg</div>
-                <div>Ter</div>
-                <div>Qua</div>
-                <div>Qui</div>
-                <div>Sex</div>
-                <div>Sáb</div>
-            </div>
-            <div class="calendar">
-                <!-- Aqui você pode inserir os dias do calendário -->
-            </div>
-        </div>
-    </div>
-
+   
     <!-- Perguntas Frequentes -->
     <div class="faq-container">
         <h2 class="faq-title">Perguntas Frequentes</h2>
@@ -332,7 +253,7 @@
 
         <div class="faq-item">
             <div class="faq-question" onclick="toggleAnswer(1)">Como faço para entrar em contato com o Suporte?</div>
-            <div class="faq-answer">Você pode acessar a página de Suporte clicando no ícone de ferramentas na lista acima, ou diretamente neste <a href="https://suporte.com" target="_blank">link</a>.</div>
+            <div class="faq-answer">Você pode acessar a página de Suporte clicando no ícone de ferramentas na lista acima, ou diretamente neste <a href="https://discordapp.com/channels/811632529656381480/811632531405013058" target="_blank">link</a>.</div>
         </div>
 
         <div class="faq-item">
@@ -381,59 +302,6 @@
         }
         
       
-        document.addEventListener("DOMContentLoaded", function () {
-            function getCurrentDate() {
-                const today = new Date();
-                const month = today.getMonth();
-                const year = today.getFullYear();
-                return { month, year };
-            }
-
-            function createCalendar(month, year) {
-                const calendar = document.querySelector(".calendar");
-                const header = document.getElementById("calendarHeader");
-
-                const months = [
-                    "📆 JANEIRO", "📆 FEVEREIRO", "📆 MARÇO", "📆 ABRIL",
-                    "📆 MAIO", "📆 JUNHO", "📆 JULHO", "📆 AGOSTO", "📆 SETEMBRO",
-                    "📆 OUTUBRO", "📆 NOVEMBRO", "📆 DEZEMBRO"
-                ];
-                header.textContent = `${months[month]} ${year}`;
-
-                const firstDay = new Date(year, month, 1).getDay();
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-                const dayInfo = {
-                    5: { text: "💀 INICIO DOS DUELOS" },
-                    15: { text: "💀 AVALIAÇÃO DAS FACÇÕES" },
-                    31: { text: "💀 AVALIAÇÃO MENSAL FACÇÕES" },
-                };
-
-                calendar.innerHTML = ''; // Limpa o calendário anterior
-
-                for (let i = 0; i < firstDay; i++) {
-                    const emptyDiv = document.createElement("div");
-                    calendar.appendChild(emptyDiv);
-                }
-
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dayDiv = document.createElement("div");
-                    dayDiv.className = "day";
-                    dayDiv.textContent = day;
-
-                    if (dayInfo[day]) {
-                        const textDiv = document.createElement("div");
-                        textDiv.innerHTML = dayInfo[day].text;
-                        dayDiv.appendChild(textDiv);
-                    }
-
-                    calendar.appendChild(dayDiv);
-                }
-            }
-
-            const { month, year } = getCurrentDate();
-            createCalendar(month, year);
-        });
         
     </script>
     
