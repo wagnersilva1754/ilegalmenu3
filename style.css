@@ -1,0 +1,226 @@
+/* style.css */
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    padding: 10px 80px;
+}
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 1px; /* Espaço entre a imagem e o texto */
+    font-size: 24px; /* Ajuste do tamanho da fonte */
+}
+
+header .logo .logo-img {
+    width: 40px; /* Tamanho da imagem */
+    height: auto; /* Mantém a proporção */
+    display: inline-block; /* Garante que a imagem seja exibida */
+}
+
+.logo {
+    font-size: 24px;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo span {
+    color: red;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff00;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out, transform 0.3s;
+}
+
+nav ul li a.active {
+    color: red;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff6347;
+    transform: scale(1.1);
+}
+
+.user-info span {
+    margin-left: 10px;
+}
+
+.caixas {
+    text-align: center;
+    padding: 10px;
+}
+
+.caixa-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.caixa {
+    border: 1px solid #676666;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    cursor: pointer;
+}
+
+.caixa img {
+    max-width: 100px;
+    height: auto;
+}
+
+.caixa p {
+    font-size: 18px;
+    color: #e6e6e6;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.caixa:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.4);
+    border-color: rgb(95, 30, 248);
+}
+
+.caixa:hover p {
+    color: red;
+    text-shadow: 0 0 10px red;
+}
+
+.caixa.selecionada {
+    border-color: #00f;
+}
+
+.abrir-caixa {
+    background-color: rgb(195, 1, 1);
+    color: rgba(255, 255, 255, 0.562);
+    padding: 10px 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    height: 40px; /* Altura fixa */
+    min-height: 30px; /* Altura mínima */
+    max-height: 50px; /* Altura máxima */
+    margin-top: 20px; /* Move o botão 20px para baixo */
+    transition: background-color 0.8s, transform 0.3s, height 0.3s ease-in-out;
+}
+
+.abrir-caixa:hover {
+    background-color: rgb(255, 69, 58); /* Cor mais clara ao passar o cursor */
+    transform: scale(1.1) translateY(5px); /* Desloca o botão mais 5px para baixo ao passar o mouse */
+    height: 50px; /* Aumenta a altura no hover */
+}
+
+
+.conteudo {
+    text-align: center;
+    padding: 20px;
+}
+
+.itens {
+    border: 1px solid #676666;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha se necessário */
+    gap: 10px; /* Espaço entre os itens */
+}
+
+.item {
+    background-color: #e0d5d556;
+    padding: 10px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Garante que a imagem e o texto fiquem alinhados verticalmente */
+    align-items: center; /* Centraliza a imagem e o texto horizontalmente */
+    width: 100px; /* Define a largura do item */
+}
+
+.item img {
+    width: 50px; /* Reduz o tamanho da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 5px; /* Espaço entre a imagem e o texto */
+    transition: transform 0.3s ease-in-out; /* Adiciona um efeito suave de animação ao passar o cursor */
+}
+
+.item:hover img {
+    transform: scale(1.2); /* Aumenta levemente a imagem ao passar o cursor */
+}
+
+.item:hover {
+    transform: scale(1.1); /* Amplia levemente o item no hover */
+    background-color: #d4c9c9; /* Muda o fundo no hover */
+}
+
+/* Amplia levemente o item no hover */
+header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #393939;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo-text span {
+    color: #e00000; /* Cor para destacar o "PREÇOS" */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+.user-info a {
+    text-decoration: none;
+    color: #333;
+}
+
