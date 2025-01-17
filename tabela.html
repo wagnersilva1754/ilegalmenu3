@@ -1,329 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela Ilegal</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, rgb(0, 0, 0), black);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 150vh;
-            overflow-y: scroll;
-            position: relative;
-        }
-
-        .background-image {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 90vw;
-            height: 100vh;
-            object-fit: cover;
-            opacity: 0.2;
-            z-index: -1;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .logo:hover {
-            transform: scale(1.2);
-        }
-
-        .menu {
-            position: fixed;
-            top: 150;
-            left: 0;
-            width: 100px;
-            height: 800vh;
-            background-color: rgba(16, 236, 181, 0);
-            padding: 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 8000;
-        }
-
-        .menu a {
-    color: rgba(255, 255, 255, 0.836);
-    text-decoration: none;
-    margin-bottom: 20px;
-    padding: 0px;
-    background-color: rgba(204, 2, 2, 0.111);
-    border-radius: 0px;
-    transition: background-color 10s ease, transform 0.5s ease; /* Adiciona transição para a transformação */
-    text-align: center;
-    width: 100%;
-    transform: translateY(223px); /* Move o texto 10px para baixo */
-}
-
-/* Para o efeito ao passar o mouse, por exemplo */
-
-
-
-        .menu a:hover {
-            background-color: rgba(180, 7, 7, 0.149);
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .dropdown-menu a {
-            background-color: rgba(205, 23, 23, 0.1);
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: rgba(180, 7, 7, 0.2);
-        }
-
-        .content {
-            margin-left: 160px;
-            padding: 20px;
-            width: calc(100% - 160px);
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 10px;
-            font-size: 3em;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        h2 {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 1.2em;
-        }
-
-        .filter {
-            margin-bottom: 20px;
-        }
-
-        #category-select {
-            padding: 10px;
-            font-size: 1em;
-        }
-
-        .item-table {
-            width: 65%; /* Ajuste para definir a largura da tabela */
-            border-collapse: collapse;
-            margin: 15px auto; /* Centraliza a tabela */
-            align-items: center;
-        }
-
-        .item-table th, .item-table td {
-            border: 0.1px solid #c61717;
-            padding: 5px;
-            text-align: center;
-        }
-
-        .item-table th {
-            background-color: #af0000;
-        }
-
-        .item-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 80px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            width: 200px;
-            height: auto;
-            margin: 50px;
-        }
-
-        .item-box .name {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .item-box .price {
-            font-size: 1.2em;
-        }
-        .image-header {
-    width: 110%;
-    height: 190px;
-    background-color: #000000;
-    display: flex;
-    justify-content: right; /* Alinha a imagem à esquerda por padrão */
-    align-items: right;
-    overflow: hidden; /* Impede que a imagem exceda a área da div */
-    transition: transform 8s ease; /* Animação ao mover a imagem */
-}
-
-.image-header img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.move-right {
-    transform: translateX(0%); /* Move a imagem 500% para a direita */
-}
-
-    </style>
+    <title>Sistema de Caixas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
+    <header>
+        <div class="logo">
+            <img src="https://i.ibb.co/dmGfPs4/COMPLEXORJ-removebg-previewf.png" alt="Logo da tabela de preços" class="logo-img">
+            <div class="logo-text">TABELA <br>DE <span>PREÇOS</span></div>
+        </div>
+        <nav>
+            <ul></ul>
+        </nav>
+        <div class="user-info">
+            <a href="." target="_blank"></a>
+        </div>
+    </header>
     
-    <div class="menu">
+    
+    <main>
+        <section class="caixas">
+            <h1>SEGMENTOS</h1>
+            <p>Escolha o segmento para verificar o valor</p>
+            <div class="caixa-container">
+                <div class="caixa comum" data-tipo="comum">
+                    <img src="https://i.ibb.co/KDZBbnY/image.png" alt="Caixa Comum">
+                    <p><span>Armas</span></p>
+                </div>
+                <div class="caixa especial" data-tipo="especial">
+                    <img src="https://i.ibb.co/2t5YMSV/imagem-2025-01-17-123105276-removebg-preview.png" alt="Caixa Especial">
+                    <p><span>Munição</span></p>
+                </div>
+                <div class="caixa simples" data-tipo="simples">
+                    <img src="https://i.ibb.co/wzqcyT2/image-removebg-preview-4.png" alt="Caixa Simples">
+                    <p><span>Lavagem</span></p>
+                </div>
+                <div class="caixa outra" data-tipo="outra">
+                    <img src="https://i.ibb.co/N1PQ1YY/image.png" alt="Caixa Outra">
+                    <p><span>Desmanche</span></p>
+                </div>
+            </div>
+            
+        </section>
         
-        <a href="index.html">Página Inicial</a>
-        
-        
-    </div>
-    <div class="image-header move-right" id="image-header">
-        <img src="https://i.ibb.co/gtRj7zS/image.png" alt="Imagem">
-    </div>
-    
-    <h1 id="titulo-principal">TABELA ILEGAL</h1>
-
-    <h2>Todos os itens devem ser vendidos com no máximo 10% caso houver uma parceria!</h2>
-    <div class="filter">
-        <select id="category-select">
-            <option value="">Selecione uma Categoria</option>
-            <option value="armas">Armas</option>
-            <option value="municao">Munição</option>
-            <option value="lavagem">Lavagem</option>
-            <option value="desmanche">Desmanche</option>
-        </select>
-    </div>
-    <table class="item-table" id="items-table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Valor com Parceria</th>
-                <th>Valor sem Parceria</th>
-                
-            </tr>
-        </thead>
-        <tbody id="items-container">
-            <!-- Os itens serão inseridos aqui pelo JavaScript -->
-        </tbody>
-    </table>
-
-    <script>
-        const items = [
-           // ARMAS
-           { name: "FAL", price: 2000000, discountPrice: 2200000, categoria: "armas" },
-            { name: "G36", price: 1500000, discountPrice: 1800000, categoria: "armas" },
-            { name: "HK416", price: 1300000, discountPrice: 1500000, categoria: "armas" },
-            { name: "M4A4", price:1150000, discountPrice: 1350000, categoria: "armas" },
-            { name: "Navycarbine", price: 850000, discountPrice: 950000, categoria: "armas" },
-            { name: "MTAR-21", price:990000, discountPrice: 1000000, categoria: "armas" },
-            { name: "AK47", price: 1100000, discountPrice: 1150000, categoria: "armas" },
-            { name: "MACHINE PISTOL", price: 400000, discountPrice: 500000, categoria: "armas" },
-            { name: "FIVEN-SEVEN", price: 330000, discountPrice: 350000, categoria: "armas" },
-    
-            // MUNIÇÃO
-            { name: "FAL", price: 6300, discountPrice: 6375, categoria: "municao" },
-            { name: "G36", price: 5800, discountPrice: 6000, categoria: "municao" },
-            { name: "HK416", price: 4710, discountPrice: 4875, categoria: "municao" },
-            { name: "M4A4", price: 4290, discountPrice: 4350, categoria: "municao" },
-            { name: "navycarbine", price: 3100, discountPrice: 3650, categoria: "municao" },
-            { name: "MTAR-21", price: 3200, discountPrice: 3375, categoria: "municao" },
-            { name: "AK47", price: 3600, discountPrice: 3750, categoria: "municao" },
-            { name: "MACHINE PISTOL", price: 2800, discountPrice: 3050, categoria: "municao" },
-            { name: "FIVEN-SEVEN", price: 1950, discountPrice: 2100, categoria: "municao" },
-    
-            // LAVAGEM
-            { name: "Lavagem Valor em <br>➡️%⬅️", price: 30, discountPrice: 50, categoria: "lavagem" },
-            { name: "Capuz", price: 58000, discountPrice: 60000, categoria: "lavagem" },
-            { name: "Algemas", price: 9000, discountPrice: 10000, categoria: "lavagem" },
-            { name: "Chave de algema", price: 18000, discountPrice: 20000, categoria: "lavagem" },
-            { name: "Kit sequestro", price: 95000, discountPrice: 100000, categoria: "lavagem" },
-            { name: "Masterpick", price: 875000, discountPrice: 900000, categoria: "lavagem" },
-            { name: "Blacklist", price: 1500000, discountPrice: 2000000, categoria: "lavagem" },
-            { name: "Maconha", price: 10000, discountPrice: 11000, categoria: "lavagem" },
-            { name: "Cocaina", price: 9800, discountPrice: 10000, categoria: "lavagem" },
-            { name: "Lsd", price: 9000, discountPrice: 10000, categoria: "lavagem" },
-            { name: "Maconha para venda", price: 1600 , discountPrice: 2000 , categoria: "lavagem" },
-            { name: "Cocaina para venda", price: 1600 , discountPrice: 2000 , categoria: "lavagem" },
-            { name: "Colete", price: 150000, discountPrice: 160000, categoria: "lavagem" },
-            { name: "Canivete", price: 180000, discountPrice: 220000, categoria: "lavagem" },
-            { name: "Machado de Batalha", price: 300000, discountPrice: 350000, categoria: "lavagem" },
-            { name: "Kit reparo portão", price: 280000, discountPrice: 350000, categoria: "lavagem" },
-            { name: "Soco inglês", price: 80000, discountPrice: 100000, categoria: "lavagem" },
-            { name: "Adrenalina", price: 70000, discountPrice: 95000, categoria: "lavagem" },
-             { name: "Notebook", price: 77000, discountPrice: 100000, categoria: "lavagem" },
-
-            // DESMANCHE
-            { name: "Lockpick", price: 35000, discountPrice: 50000, categoria: "desmanche" },
-            { name: "Placa", price: 63000, discountPrice: 70000, categoria: "desmanche" },
-            { name: "C4", price: 70000, discountPrice: 75000, categoria: "desmanche" },
-            { name: "Bomba-relogio", price:  165000, discountPrice: 180000, categoria: "desmanche" },
-            { name: "Nitro", price: 28000, discountPrice: 30000, categoria: "desmanche" },
-            { name: "Caminhão 750kg", price: 9800000, discountPrice: 10000000, categoria: "desmanche" },
-            { name: "Tunning ilegal <br> em analise", price: "(Em analise)", discountPrice: "(Em analise)", categoria: "desmanche" },
-            { name: "Desmanche", price: "40%", discountPrice: "60%", categoria: "desmanche" },
-            { name: "Faca", price: 180000, discountPrice: 220000, categoria: "desmanche" },
-            { name: "Machado de Batalha", price: 300000, discountPrice: 350000, categoria: "desmanche" },
-            { name: "Mochilax", price: 180000, discountPrice: 200000, categoria: "desmanche" },
-            { name: "Taco", price: 170000, discountPrice: 210000, categoria: "desmanche" }
-        ];
-        document.addEventListener('DOMContentLoaded', () => {
-            const categorySelect = document.getElementById('category-select');
-            const itemsContainer = document.getElementById('items-container');
-            const title = document.getElementById('titulo-principal');
-
-            function displayItems(category) {
-                itemsContainer.innerHTML = '';
-                const filteredItems = items.filter(item => item.categoria === category);
-
-                filteredItems.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${item.name}</td>
-                        <td>R$ ${item.price.toLocaleString('pt-BR')}</td>
-                        <td>R$ ${item.discountPrice.toLocaleString('pt-BR')}</td>
-                    `;
-                    itemsContainer.appendChild(row);
-                });
-            }
-
-            function updateTitle(category) {
-                const categoryTitles = {
-                    'armas': 'Tabela de Armas',
-                    'municao': 'Tabela de Munição',
-                    'lavagem': 'Tabela de Lavagem',
-                    'desmanche': 'Tabela de Desmanche',
-                };
-                title.textContent = categoryTitles[category] || 'TABELA ILEGAL';
-            }
-
-            categorySelect.addEventListener('change', (event) => {
-                const selectedCategory = event.target.value;
-                displayItems(selectedCategory);
-                updateTitle(selectedCategory);
-            });
-        });
-    </script>
+        <section class="conteudo">
+            <h2>ITENS</h2>
+            <p> ⚠️ Lembre-se, nenhum item poderá ser vendido abaixo do valor de 10% de desconto. ⚠️ <br> 🔴Vendas ou compras abaixo do valor permitido, irá resultar em wipe da conta do player. </p>
+            <div class="itens"></div>
+        </section>
+    </main>
 </body>
 </html>
