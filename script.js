@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 
                 { 
-                    img: "https://i.ibb.co/m00RJ8M/image-removebg-preview-2.png", 
+                    img: "https://i.ibb.co/N1PQ1YY/image.png", 
                     texto: "Desmanche <br><br> PARCERIA : 40% <br><br> SEM PARCERIA: 60%"  
                 },
                 { 
