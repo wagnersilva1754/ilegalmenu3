@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 { 
                     img: "https://i.ibb.co/wrWMN8x/image.png", 
-                    texto: "Sala Personalizada <br><br> PARCERIA : 2.500.000 <br><br> SEM PARCERIA: 3.200.000"  
+                    texto: "Sala Personalizada <br><br> PARCERIA : 1.000.000 <br><br> SEM PARCERIA: 1.500.000"  
                 }
             ],
         },
