@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 { 
                     img: "https://i.ibb.co/ThsNKcj/image-removebg-preview-29.png", 
-                    texto: "Masterpick <br><br> PARCERIA : 875.000 <br><br> SEM PARCERIA: 900.000"  
+                    texto: "Masterpick <br><br> PARCERIA : 87000 <br><br> SEM PARCERIA: 90000"  
                 },
                
                 { 
