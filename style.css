@@ -1,0 +1,245 @@
+body{
+    background-color: rgba(0, 0, 0, 0.932);
+}
+
+#container {
+    position: relative;
+    background-image: url("img/backgroundHome-a5fa84d9.png");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 590px;
+    width: 1000px;
+    top: 20px;
+    left: 310px;
+}
+
+
+
+#text {
+    position: relative;
+    text-align: center;
+    top: 30px;
+    color: rgb(234, 234, 234);
+    font-size: 22px;
+    font-family: 'Inter', 
+}
+
+#opcoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 40px; 
+    width: 790px;
+    background-color: rgba(133, 131, 135, 0.416);
+    top: 75px;
+    left: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 15px;
+}
+
+button {
+    background-color: rgba(113, 113, 113, 0);
+  
+    color: white;
+    font-size: 11px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: rgb(41, 84, 255);
+}
+
+#exibir {
+    position: relative;
+    width: 370px;
+    height: 280px;
+    top: 110px;
+    left: 40px;
+    background-color: rgba(161, 0, 0, 0);
+    text-align: center;
+    perspective: 1500px; /* Maior perspectiva para um efeito mais forte */
+}
+#test{
+    position: relative;
+    text-align: center;
+    font-size: 15px;
+    color: rgba(209, 0, 0, 0);
+    left: 280px;
+    top: -118px;
+}
+
+
+#precos {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: Arial, sans-serif;
+    top: -195px;
+    left: 50px;
+}
+
+h2 {
+    font-size: 11px;
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    font-size: 11px;
+    color: rgb(239, 239, 239);
+    font-weight: bold;
+}
+
+#itens-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.item {
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+#item-imagem {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    max-width: 500px;
+    height: 290px;
+    width: 360px;
+    transition: transform 0.6s ease, box-shadow 0.3s ease; /* Transição suave e sombra */
+    transform-style: preserve-3d; /* Mantém o efeito 3D */
+}
+
+/* efeito 3D */
+
+#item-imagem:hover {
+    transform: rotateX(20deg) rotateY(20deg) scale(1.1); 
+    box-shadow: 0 10px 30px rgba(123, 119, 119, 0); 
+}
+
+
+
+.item:hover {
+    background-color: #0041c300;
+}
+
+button.selected {
+    background-color: rgb(89, 86, 255); /* Cor de fundo do botão selecionado */
+    box-shadow: 0 4px 6px rgba(64, 28, 247, 0.4); /* Sombra diferente para o botão selecionado */
+    font-weight: bold; /* Deixar o texto em negrito */
+}
+
+button:hover {
+    background-color: rgb(52, 92, 254); /* Cor de fundo ao passar o cursor */
+}
+
+
+#itens {
+    position: relative;
+    font-size: 30px;
+    width: 350px;
+    height: 320px; /* Ajuste para se adaptar ao conteúdo */
+    top: -160px;
+    left: 460px;
+    background-color: rgba(245, 0, 0, 0);
+   
+
+}
+
+#itens-container {
+    position: relative;
+    display: grid;  /* Usando grid para controlar a disposição dos itens */
+    grid-template-columns: repeat(2, 1fr);  /* Duas colunas de largura igual */
+    gap: 10px;  /* Espaço entre os itens */
+    justify-items: center; /* Centraliza os itens na célula */
+    align-items: center; /* Garante que os itens ocupem toda a altura das células, mas não sobreponham */
+    margin-top: 20px; /* Distância entre o topo e os itens */
+    left: 150px;
+    top: 30px;
+}
+
+.item {
+    position: relative;
+    padding: 10px 15px; /* Ajuste do padding para um tamanho mais confortável */
+    font-size: 14px; /* Tamanho de fonte reduzido para um visual mais compacto */
+    cursor: pointer;
+    text-align: center;
+    background: transparent;
+    color: white;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px; /* Adiciona borda arredondada aos itens */
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Altura dos itens reduzida para ficar mais compacta */
+    width: 100%;  /* Faz com que o item ocupe toda a largura disponível na célula do grid */
+    box-sizing: border-box; /* Garante que o padding não afete o tamanho do item */
+    
+}
+
+.item::before,
+.item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.item::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid rgb(44, 83, 255);
+    border-left: 2px solid rgb(44, 83, 255);
+}
+
+.item::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid rgb(44, 83, 255);
+    border-right: 2px solid rgb(44, 83, 255);
+}
+
+.item.selected {
+    border-color: transparent;
+}
+
+.item.selected::before {
+    width: 100%;
+    height: 100%;
+    border-top-color: rgb(44, 83, 255);
+    border-left-color: rgb(0, 57, 170);
+    transition: width 0.15s ease-in-out, height 0.15s ease-in-out 0.15s;
+}
+
+.item.selected::after {
+    width: 100%;
+    height: 100%;
+    border-bottom-color: rgb(0, 78, 245);
+    border-right-color: rgb(0, 45, 225);
+    transition: height 0.15s ease-in-out, width 0.15s ease-in-out 0.15s;
+}
+
+
+
+

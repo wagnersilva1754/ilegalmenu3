@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela ilegal</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+   <div id="container">
+     <p id="text">TABELA ILEGAL</p>
+      
+        <div id="opcoes">
+            <button id="btn1" onclick="alterar('armas')">Armas</button>
+            <button id="btn2" onclick="alterar('municao')">Munição</button>
+            <button id="btn3" onclick="alterar('lavagem')">Lavagem</button>
+            <button id="btn4" onclick="alterar('desmanche')">Desmanche</button>
+            <button id="btn5" onclick="alterar('drogas')">Drogas</button>
+            <button id="btn6" onclick="alterar('contrabando')">Contrabando</button>
+        </div>
+
+        <div id="exibir"> 
+            <!-- Imagem será exibida aqui -->
+            <img id="item-imagem" src="https://i.ibb.co/TD67yCZJ/image.png" alt="" style="max-width: 2900px; max-height: 2500px; height: auto; top: 15px;left: -0px;">
+        </div>
+        
+      
+      <div id="itens" style="display: none;">
+        <div id="itens-container"></div>
+     
+    </div>
+
+    <div id="precos" style="display: none;">
+        <h2>Preço com parceria:</h2>
+        <h3 id="valor1">000</h3>
+    
+        <h2>Preço sem parceria:</h2>
+        <h3 id="valor2">000</h3>
+
+    </div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
